@@ -3,6 +3,8 @@ import './App.css';
 function App() {
   const btnClick = () => {
     console.log(document.getElementById('text').value)
+    console.log(process.env)
+    console.log(process.env.REACT_APP_API_KEY)
   }
 
   return (
