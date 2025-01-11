@@ -1,12 +1,21 @@
 import './App.css';
 
 function App() {
-  const btnClick = async () => {
+  let response;
+  let headlines = [];
+  const btnClick = () => {
     fetch("https://newsapi.org/v2/everything?q=" + document.getElementById('text').value + "&apiKey=" + process.env.REACT_APP_API_KEY)
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data)
+        response = data;
+        seperateTitles(data)
       })
+  }
+
+  function seperateTitles(obj) {
+    for (let i = 0; i < obj.articles.length; i++) {
+      headlines.push(obj.articles[i].title);
+    }
   }
 
   return (
