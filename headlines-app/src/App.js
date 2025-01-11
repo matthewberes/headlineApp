@@ -1,10 +1,12 @@
 import './App.css';
 
 function App() {
-  const btnClick = () => {
-    console.log(document.getElementById('text').value)
-    console.log(process.env)
-    console.log(process.env.REACT_APP_API_KEY)
+  const btnClick = async () => {
+    fetch("https://newsapi.org/v2/everything?q=" + document.getElementById('text').value + "&apiKey=" + process.env.REACT_APP_API_KEY)
+      .then((resp) => resp.json())
+      .then((data) => {
+        console.log(data)
+      })
   }
 
   return (
