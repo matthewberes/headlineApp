@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import React from 'react';
+import './TextInputComponent.css'
 
 function TextInputComponent() {
   let input;
   let response;
-  let headliner = [];
-  let matchy = [];
-  // const [headlines, setHeadines] = useState([])
-  // const [matches, setMatches] = useState([])
+  let headlines = [];
+  let matches = [];
   const [output, setOutput] = useState([])
 
   const btnClick = () => {
@@ -21,33 +20,38 @@ function TextInputComponent() {
   }
 
   function seperateTitles(obj) {
-    headliner = []
-    for (let i = 0; i < obj.articles.length; i++) {
-      headliner.push(obj.articles[i].title);
+    headlines = []
+    for (let i = 0; i < obj.articles?.length; i++) {
+      headlines.push(obj.articles[i].title);
     }
     checkMatch();
   }
 
   function checkMatch() {
-    matchy = []
-    for (let i = 0; i < headliner.length; i++) {
-      if (headliner[i].toLowerCase().includes(input.trim().toLowerCase())) {
-        matchy.push(response.articles[i]);
+    matches = []
+    for (let i = 0; i < headlines.length; i++) {
+      if (headlines[i].toLowerCase().includes(input.trim().toLowerCase())) {
+        matches.push(response.articles[i]);
         console.log("We found a match: ");
-        console.log("Title: " + headliner[i]);
+        console.log("Title: " + headlines[i]);
         console.log("Author: " + response.articles[i].author);
         console.log("Source: " + response.articles[i].source.name);
       }
     }
-    setOutput(matchy.map(item => <p><a href={item.url}>{item.source.name}</a></p>))
+    setOutput(matches.map(item =>
+      <div className="box">
+        <p>{item.title}</p>
+        <a href={item.url}>{item.source.name}</a>
+      </div>
+    ))
   }
 
-  let testy = <p>{output.length} matches found:</p>
+  let count = <p><strong>{output.length} matches found:</strong></p>
   return (
     <div>
       <input type="input" id="text"></input>
       <button onClick={btnClick}>Submit</button>
-      {output.length > 0 && testy}
+      {output.length > 0 && count}
       {output}
     </div>
   );
