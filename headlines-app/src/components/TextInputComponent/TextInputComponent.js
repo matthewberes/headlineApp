@@ -7,7 +7,8 @@ function TextInputComponent() {
   let response;
   let headlines = [];
   let matches = [];
-  const [output, setOutput] = useState([])
+  const [output, setOutput] = useState([]);
+  const [noResult, setNoResult] = useState([]);
 
   const btnClick = () => {
     input = document.getElementById('text').value;
@@ -18,6 +19,16 @@ function TextInputComponent() {
         seperateTitles(data);
       });
   }
+
+  const clearText = () => {
+    console.log("testy")
+  }
+
+  // getElementById("#text").addEventListener("keyup", function (event) {
+  //   if (event.key === "Enter") {
+  //     btnClick();
+  //   }
+  // });
 
   function seperateTitles(obj) {
     headlines = []
@@ -44,15 +55,22 @@ function TextInputComponent() {
         <a href={item.url}>{item.source.name}</a>
       </div>
     ))
+    if (output.length === 0) {
+      setNoResult(<div><p><strong>0</strong> matches found:</p><p>Double check your input for typos</p></div>)
+    } else {
+      setNoResult(<p></p>)
+    }
   }
 
-  let count = <p><strong>{output.length} matches found:</strong></p>
+  let count = <p><strong>{output.length}</strong> matches found:</p>
   return (
     <div>
-      <input type="input" id="text"></input>
+      <input type="text" id="text"></input>
       <button onClick={btnClick}>Submit</button>
+      <button onClick={clearText}>Clear</button>
       {output.length > 0 && count}
       {output}
+      {output.length === 0 && noResult}
     </div>
   );
 }
