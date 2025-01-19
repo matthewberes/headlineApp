@@ -55,7 +55,7 @@ function TextInputComponent() {
         <a href={item.url}>{item.source.name}</a>
       </div>
     ))
-    if (output.length === 0) {
+    if (matches.length === 0) {
       setNoResult(<div><p><strong>0</strong> matches found:</p><p>Double check your input for typos</p></div>)
     } else {
       setNoResult(<p></p>)
