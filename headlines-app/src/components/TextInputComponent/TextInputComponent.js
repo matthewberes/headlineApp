@@ -21,7 +21,7 @@ function TextInputComponent() {
   }
 
   const clearText = () => {
-    console.log("testy")
+    input = document.getElementById('text').value = "";
   }
 
   // getElementById("#text").addEventListener("keyup", function (event) {
@@ -40,6 +40,7 @@ function TextInputComponent() {
 
   function checkMatch() {
     matches = []
+    //should set output to empty here
     for (let i = 0; i < headlines.length; i++) {
       if (headlines[i].toLowerCase().includes(input.trim().toLowerCase())) {
         matches.push(response.articles[i]);
