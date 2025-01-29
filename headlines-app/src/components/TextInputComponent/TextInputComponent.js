@@ -67,6 +67,7 @@ function TextInputComponent() {
   return (
     <div>
       <input type="text" id="text"></input>
+      <br></br>
       <button onClick={btnClick}>Submit</button>
       <button className='clear' onClick={clearText}>Clear</button>
       {output.length > 0 && count}
