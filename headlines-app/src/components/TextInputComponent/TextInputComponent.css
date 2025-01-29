@@ -37,5 +37,18 @@ input[type=text] {
 }
 
 button {
-    width: 4%;
+    position: relative;
+    background-color: lightblue;
+    border: 1px solid rgb(0, 123, 255);
+    margin: 1px;
+    padding: 5px;
+    height: 30px;
+    left: 0;
+    outline: none;
+    font-size: 16px;
+}
+
+.clear {
+    background-color: lightgray;
+    border: 1px solid gray;
 }
